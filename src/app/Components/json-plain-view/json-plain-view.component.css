@@ -1,0 +1,31 @@
+.json-plain-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-family: monospace;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.json-plain-header {
+  background-color: #20232a;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #444;
+}
+
+.json-plain-cell {
+  padding: 12px;
+  border-right: 1px solid #eee;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-x: auto;
+  background-color: #fafafa;
+}
+
+.json-plain-cell:last-child {
+  border-right: none;
+}

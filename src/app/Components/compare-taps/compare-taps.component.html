@@ -1,0 +1,13 @@
+<div class="tabs">
+  <button (click)="selectedTab = 'tree'" [class.active]="selectedTab === 'tree'">Descriptive Diff</button>
+  <button (click)="selectedTab = 'side'" [class.active]="selectedTab === 'side'">Side-by-Side Diff</button>
+  <button (click)="selectedTab = 'plain'" [class.active]="selectedTab === 'plain'">Raw JSON Diff</button>
+</div>
+
+<div class="tab-content">
+  <ng-container [ngSwitch]="selectedTab">
+    <app-diff-node *ngSwitchCase="'tree'" [diff]="diff"></app-diff-node>
+    <app-side-by-side *ngSwitchCase="'side'" [diff]="diff"></app-side-by-side>
+    <app-json-plain-view *ngSwitchCase="'plain'" [oldJson]="json1" [newJson]="json2"></app-json-plain-view>
+  </ng-container>
+</div>

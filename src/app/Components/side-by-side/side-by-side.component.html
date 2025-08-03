@@ -1,0 +1,34 @@
+  <div class="diff-grid">
+
+
+    <ng-container *ngFor="let node of diff">
+      <div class="diff-cell" [style.backgroundColor]="getColor(node.status)"
+        [style.borderLeftColor]="getBorderColor(node.status)">
+        <div class="key-line">
+          <span (click)="toggle(node.key)" *ngIf="node.children?.length" class="toggle">
+            {{ collapsed[node.key] ? '▶' : '▼' }}
+          </span>
+          <strong>{{ node.key }}</strong>:
+        </div>
+        <div *ngIf="node.oldValue !== undefined">
+          <pre>{{ node.oldValue | json }}</pre>
+        </div>
+      </div>
+
+      <div class="diff-cell" [style.backgroundColor]="getColor(node.status)"
+        [style.borderLeftColor]="getBorderColor(node.status)">
+        <div class="key-line">
+          <span (click)="toggle(node.key)" *ngIf="node.children?.length" class="toggle">
+            {{ collapsed[node.key] ? '▶' : '▼' }}
+          </span>
+          <strong>{{ node.key }}</strong>:
+        </div>
+        <div *ngIf="node.newValue !== undefined">
+          <pre>{{ node.newValue | json }}</pre>
+        </div>
+      </div>
+      <div class="diff-child" *ngIf="node.children?.length && collapsed[node.key]">
+        <app-side-by-side [diff]="node.children ?? []"></app-side-by-side>
+      </div>
+    </ng-container>
+  </div>

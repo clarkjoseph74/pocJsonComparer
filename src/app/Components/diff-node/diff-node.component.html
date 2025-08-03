@@ -1,0 +1,37 @@
+<ul>
+  <li *ngFor="let node of diff" [style.color]="getColor(node.status)">
+    <strong>{{ node.key }}</strong>:
+    <ng-container [ngSwitch]="node.status">
+
+      <!-- Nested object -->
+<ng-container *ngSwitchCase="'array'">
+  <app-diff-node [diff]="node.children ?? []"></app-diff-node>
+</ng-container>
+
+<ng-container *ngSwitchCase="'nested'">
+  <app-diff-node [diff]="node.children ?? []"></app-diff-node>
+</ng-container>
+
+<ng-container *ngSwitchCase="'changed'">
+  <span>{{ node.oldValue | json }} → {{ node.newValue | json }}</span>
+  <app-diff-node *ngIf="node.children?.length" [diff]="node.children ?? []"></app-diff-node>
+</ng-container>
+
+      <!-- Added -->
+      <ng-container *ngSwitchCase="'added'">
+        <span>+ {{ node.newValue | json }}</span>
+      </ng-container>
+
+      <!-- Removed -->
+      <ng-container *ngSwitchCase="'removed'">
+        <span>- {{ node.oldValue | json }}</span>
+      </ng-container>
+
+      <!-- Unchanged -->
+      <ng-container *ngSwitchCase="'unchanged'">
+        <span>= {{ node.oldValue | json }}</span>
+      </ng-container>
+
+    </ng-container>
+  </li>
+</ul>

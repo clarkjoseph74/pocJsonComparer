@@ -1,0 +1,93 @@
+.diff-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  margin: 10px 0px;
+}
+
+.diff-header {
+  background-color: #20232a;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 12px;
+  border-bottom: 1px solid #444;
+  text-align: center;
+}
+
+.diff-cell {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.5;
+}
+
+.diff-cell strong {
+  display: inline-block;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.diff-cell pre {
+  margin: 0;
+  font-family: monospace;
+  background-color: transparent;
+  border: none;
+  color: #444;
+}
+
+/* Background colors based on change status */
+.diff-cell.added {
+  background-color: #e8f8ec;
+  border-left: 4px solid #28a745;
+}
+
+.diff-cell.removed {
+  background-color: #fcebea;
+  border-left: 4px solid #dc3545;
+}
+
+.diff-cell.changed {
+  background-color: #fff6e5;
+  border-left: 4px solid #ffc107;
+}
+
+.diff-cell.unchanged {
+  background-color: #f9f9f9;
+  border-left: 4px solid #ccc;
+}
+
+.diff-cell.empty {
+  background-color: #f9f9f9;
+}
+
+/* Collapsible toggler */
+.key-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-weight: 600;
+  cursor: default;
+}
+
+.toggle {
+  cursor: pointer;
+  font-size: 12px;
+  user-select: none;
+  color: #555;
+}
+
+/* Child rows */
+.diff-child {
+  grid-column: span 2;
+  padding-left: 20px;
+  background: #fcfcfc;
+  border-top: 1px solid #eee;
+}
